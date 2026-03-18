@@ -1,0 +1,130 @@
+*{
+    margin: 0;
+    padding: 0;
+    
+}
+
+.card{
+    margin-top: 50px;
+}
+body{
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #fdf5e6;
+}
+.header{
+    background-color: #d9534f;
+    color: white;
+    text-align: center;
+    font-size: 10px;
+    line-height: 60px;
+    box-shadow: 0 2px 5px black;
+    margin: 0;
+    padding: 0;
+}
+
+.main{
+    background-color: white;
+    position: relative;
+    z-index: 1;
+    box-shadow: 0 4px 15px black;
+    width: 30%;
+    margin: auto;
+    height: 880px;
+    border-radius:15px ;
+    -webkit-border-radius:15px ;
+    -moz-border-radius:15px ;
+    -ms-border-radius:15px ;
+    -o-border-radius:15px ;
+}
+.content{
+    margin-left: 40px;
+    margin-right: 40px;
+}
+.content h2{
+    text-align: center;
+    margin-top: 10px;
+}
+.discount{
+    position: sticky;
+    top: 0;
+    background-color: #76b947;
+    color: white;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 2px 4px black;
+    font-size: 10px;
+    padding: 10px;
+    border-radius: 15px;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    -ms-border-radius: 15px;
+    -o-border-radius: 15px;
+}
+.content h3{
+    padding-left: 10px;
+}
+
+.main h2{
+    color: #e63946;
+}
+
+h3{
+    color: #f19c1f;
+    border-left: 5px solid #f19c1f;
+    
+}
+
+p, ul, ol{
+    color: #444;
+    line-height: 1.6;
+    margin-top: 10px;
+}
+
+ul,ol{
+    margin-left: 50px;
+}
+
+#bawah-rahasia{
+    border-top: 1px dashed #ccc;
+    height: 2px;
+    color: #AAAAAA;
+}
+
+.pesan-rahasia:hover{
+    background-color:  #f19c1f;
+}
+.pesan-rahasia{
+    position: sticky;
+    bottom: 0;
+    background-color: #402D26;
+    color: white;
+    border-radius: 50px;
+    text-align: center;
+    -webkit-border-radius: 50px;
+    -moz-border-radius: 50px;
+    -ms-border-radius: 50px;
+    -o-border-radius: 50px;
+    padding: 4px;
+    max-width: 450px;
+    height: 25px;
+    font-size: 15px;
+    margin-left: 780px;
+}
+
+table{
+    width: 200px;
+    height: 14px;
+    margin: auto;
+}
+
+.merah{
+    background-color: #e63946;
+}
+
+.kuning{
+    background-color: #ffcc00;
+}
+
+.outline{
+    background-color: #402D26;
+}

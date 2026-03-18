@@ -1,0 +1,155 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    font-family: nunito;
+}
+
+body{
+    background-color: #F5F6FA;
+}
+
+.pembungkus{
+    margin-left: 750px;
+    margin-top: 300px;
+    
+}
+.ikon-produk{
+    font-size: 130px;
+    margin-left: 45px;
+}
+
+.nama-produk{
+    font-size: 14px;
+    font-weight: 900;
+    color: #1A1A2E;
+}
+
+.harga-diskon{
+    color: #E63946;
+    font-weight:900;
+}
+.bintang{
+    color: #F59E0B;
+}
+.baris-rating{
+    color:#AAAAAA;;
+}
+.harga-asli{
+    color: #AAAAAA;
+    text-decoration: line-through;
+    font-size: 12px;
+    margin-top: 2px;
+}
+/* Kartu utama: parent semua elemen absolute */
+.kartu-produk {
+    position: relative;
+    width: 260px;
+    background: #ffffff;
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.10);
+}
+/* Area gambar: parent label dan badge di atas gambar */
+.kotak-gambar {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background: #E8F0FE;
+}
+
+/* Label diskon: pojok kiri atas gambar */
+.label-diskon {
+    position: absolute;
+    font-weight: bolder;
+    top: 12px;
+    left: 12px;
+    background-color: #E63946;
+    color: white;
+    font-size: large;
+    padding:5px 10px 5px 10px;
+    border-radius: 10px;
+    /*tambahkan: background, color, font-size, padding, border-radius */;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
+/* Label baru: pojok kanan atas gambar */
+.label-baru {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    background-color:#3B5BDB ;
+    color: white;
+    font-size: large;
+    padding:5px 10px 5px 10px;
+    border-radius: 10px;
+    font-weight: bolder
+ /* tambahkan: background, color, font-size, padding, border-radius */
+}
+/* Badge terjual: pojok kiri bawah gambar */
+.badge-terjual {
+    position: absolute;
+    bottom: 10px;
+    left: 12px;
+    background-color: grey;
+    color: white;
+    font-size: 13px;
+    padding: 5px;
+    border-radius: 20px;
+    font-weight: bolder
+    /*tambahkan: background, color, font-size, padding, border-radius */;
+    -webkit-border-radius: 20px;
+    -moz-border-radius: 20px;
+    -ms-border-radius: 20px;
+    -o-border-radius: 20px;
+}
+/* Baris harga: harga diskon + harga asli berdampingan */
+.baris-harga {
+    overflow: hidden;
+    margin-bottom: 10px;
+}
+.harga-diskon { 
+    float: left; 
+}
+.harga-asli { 
+    float: left; 
+    margin-left: 8px; 
+}
+/* Baris rating:     bintang + jumlah ulasan berdampingan */
+.baris-rating {
+    overflow: hidden;
+    margin-bottom: 14px;
+    float: left;
+}
+.bintang { 
+    float: left; 
+    font-size: smaller;
+}
+.jumlah-ulasan { 
+    float: left; 
+    margin-left: 6px; 
+    font-size: smaller;
+}
+.info-produk{
+    margin-left: 20px;
+    margin-top: 5px;
+    margin-bottom: 20px;
+}
+.tombol-keranjang{
+    color: white;
+    background-color: #3B5BDB;
+    border: 2px solid white;
+    padding: 10px;
+    width: 90%;
+    font-weight: bolder;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -ms-border-radius: 10px;
+    -o-border-radius: 10px;
+}
