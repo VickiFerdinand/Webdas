@@ -1,0 +1,354 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>ECommerce - 2572030</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous" />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"></script>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+
+    #hero-section{
+      background-image: linear-gradient(to right,#6F8DFA,#A478E4);
+      width: 100%;
+      height: 500px;
+    }
+
+    #Laptop-Picture{
+      font-size: 200px;
+      width: 200px;
+      margin-right: 20%;
+    }
+
+    .object-fit-cover{
+      max-height: 50%;
+    }
+    
+    img{
+      width: 500px;
+      height: 500px;
+    }
+
+    #mac{
+      height: 90%;
+      width: 90%;
+    }
+
+    .card:hover { 
+      transform: translateY(-5px);
+      box-shadow: 0 .5rem 1rem rgba(0,0,0,.15); 
+    }
+  </style>
+  <body>
+    <nav>
+      <div class="container-fluid d-flex bg-black">
+        <div class="container d-flex ms-5">
+          <h1 class="text-white p-2 align-self-center">🧑‍💻TechStore</h1>
+          <ul class="list-unstyled d-flex align-items-center gap-4 m-0">
+            <li class="text-white m-lg-2">Home</li>
+            <li>
+              <div class="dropdown">
+                <button
+                  class="dropdown-toggle border-0 bg-black text-white"
+                  data-bs-toggle="dropdown"
+                  aria-expanded="false">
+                  Products
+                </button>
+                <ul class="dropdown-menu">
+                  <li><a class="dropdown-item" href="#">Product 1</a></li>
+                  <li><a class="dropdown-item" href="#">Product 2</a></li>
+                  <li><a class="dropdown-item" href="#">Product 3</a></li>
+                </ul>
+              </li>
+              <li class="text-white">FAQ</li>
+              <li class="text-white">About</li>
+            </div>
+            <button type="button"
+              class="btn btn-outline-info me-5 h-50 m-3">🔔Enable
+              Notifications</button>
+
+          </ul>
+        </div>
+      </nav>
+
+      <section id="hero-section" class="d-flex align-items-center p-5">
+        <div class="hero container-fluid align-content-center m-5">
+          <button type="button" class="btn btn-light fw-bold">New Arrivals
+            2025</button>
+          <h1 class="fw-bold text-white">Upgrade Your Tech.</h1>
+          <h1 class="fw-bold text-white">Upgrade Your Life.</h1>
+          <p class="text-white">The latest gadgets, best prices, and free
+            delivery on all orders
+            above Rp 500.000</p>
+          <button type="button" class="btn btn-light text-dark fw-bold">Shop
+            Now</button>
+          <button type="button" class="btn btn-outline-light">Learn
+            More</button>
+        </div>
+        <div id="Laptop-Picture">💻</div>
+      </section>
+
+      <main>
+        <section class="bg-white py-5 mb-5">
+          <div class="container">
+            <div class="container w-100 d-flex justify-content-center">
+              <div id="carouselExample" class="carousel slide w-100 h-75">
+                <h3 class="text-left fw-bold mb-4">Promo Terbaru</h3>
+                <div class="carousel-indicators">
+                  <button type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="0" class="active bg-white"
+                    aria-current="true"
+                    aria-label="Slide 1"></button>
+                  <button type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="1" class="active bg-white"
+                    aria-label="Slide 2"></button>
+                  <button type="button"
+                    data-bs-target="#carouselExampleIndicators"
+                    data-bs-slide-to="2" class="active bg-white"
+                    aria-label="Slide 3"></button>
+                </div>
+                <div class="carousel-inner bg-warning rounded-4 p-xl-2">
+                  <div class="carousel-item active object-fit-cover">
+                    <img
+                      src="https://p2-ofp.static.pub/ShareResource/ww/landing-pages/legion-brand/Feb-2026/agnostic/img/lenovo-legion-agnostic-showcase-product-2.png"
+                      class="d-block img-fluid mx-auto"
+                      alt="..."><br><br><br><br><br><br><br><br>
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5 class="fw-bold fs-1">Lenovo Legion 5</h5>
+                      <h5
+                        class="fw-bold text-danger fs-3"><i><s>Rp24.999.999</s></i></h5>
+                      <h5 class="fw-bold text-danger fs-3"> NOW ONLY
+                        Rp19.999.999</h5>
+                      <p class="fs-4 text-secondary-emphasis">Use Promo Code
+                        "LEGIONPRO"</p>
+                    </div>
+                  </div>
+
+                  <div class="carousel-item object-fit-cover">
+                    <img
+                      src="https://dlcdnwebimgs.asus.com/gain/BCAD66DB-F343-4722-AEDF-E8B3E2326362/w1000/h732"
+                      class="d-block img-fluid mx-auto"
+                      alt="..."><br><br><br><br><br><br><br>
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5 class="fw-bold fs-1">Asus ROG Strix</h5>
+                      <h5
+                        class="fw-bold text-danger fs-3"><i><s>Rp29.999.999</s></i></h5>
+                      <h5 class="fw-bold text-danger fs-3"> NOW ONLY
+                        Rp23.999.999</h5>
+                      <p class="fs-4 text-secondary-emphasis">Use Promo Code
+                        "STRIXJUARA"</p>
+                    </div>
+                  </div>
+
+                  <div class="carousel-item object-fit-cover">
+                    <img
+                      src="https://www.hp.com/content/dam/sites/omen/worldwide/laptops/2022-victus-15-intel/Hero%20Image%202.png"
+                      class="d-block img-fluid mx-auto"
+                      alt="..."><br><br><br><br><br><br><br>
+                    <div class="carousel-caption d-none d-md-block">
+                      <h5 class="fw-bold fs-1">HP Victus 16</h5>
+                      <h5
+                        class="fw-bold text-danger fs-3"><i><s>Rp50.999.999</s></i></h5>
+                      <h5 class="fw-bold text-danger fs-3"> NOW ONLY
+                        Rp45.999.999</h5>
+                      <p class="fs-4 text-secondary-emphasis">Use Promo Code
+                        "VICTUS30"</p>
+                    </div>
+                  </div>
+                </div>
+                <button class="carousel-control-prev" type="button"
+                  data-bs-target="#carouselExample" data-bs-slide="prev">
+                  <span class="carousel-control-prev-icon"
+                    aria-hidden="true"></span>
+                  <span class="visually-hidden">Previous</span>
+                </button>
+                <button class="carousel-control-next" type="button"
+                  data-bs-target="#carouselExample" data-bs-slide="next">
+                  <span class="carousel-control-next-icon"
+                    aria-hidden="true"></span>
+                  <span class="visually-hidden">Next</span>
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="container d-grid mt-4">
+            <div class="container produk">
+              <div
+                class="row column-gap-sm-5 row-gap-4 mt-2 justify-content-center">
+                <h1>Produk</h1>
+                <div class="card" class="d-flex mx-4" style="width: 18rem;">
+                  <img id="mac" class="align-self-center"
+                    src="https://cdsassets.apple.com/live/7WUAS350/images/tech-specs/mba-13inch-15inch.png">
+                  <div class="card-body">
+                    <span class="badge text-bg-danger">Best Seller</span>
+                    <h5 class="card-title">Macbook Pro 2026 18'</h5>
+                    <p class="card-text">Apple M4 Pro Chip, 16GB RAM, 512GB
+                      Storage, Retina+ Screen, Apple Priority Care</p>
+                    <a href="#" class="btn btn-primary container-fluid" onclick="showToast()">Add to
+                      Cart</a>
+                  </div>
+                </div>
+                <div class="card" class="d-flex " style="width: 18rem;">
+                  <img id="mac" class="align-self-center"
+                    src="https://down-id.img.susercontent.com/file/id-11134201-7r98t-lmpk42301ctbbc">
+                  <div class="card-body">
+                    <span class="badge text-bg-info">Baru</span>
+                    <h5 class="card-title">Iphone 15</h5>
+                    <p class="card-text">Apple A18, 8GB RAM, 512GB Storage,
+                      Retina+ Screen, Apple Priority Care</p>
+                    <a href="#" class="btn btn-warning container-fluid" onclick="showToast()">Add to
+                      Cart</a>
+                  </div>
+                </div>
+                <div class="card" class="d-flex " style="width: 18rem;">
+                  <img id="mac" class="align-self-center"
+                    src="https://images.samsung.com/is/image/samsung/p6pim/id/sm-s731bdbcxid/gallery/id-galaxy-s25-fe-sm-s731-sm-s731bdbcxid-549079730?$Q90_1248_936_F_PNG$">
+                  <div class="card-body">
+                    <span class="badge text-bg-danger">Hot Product🔥</span>
+                    <h5 class="card-title">Samsung S25 Ultra</h5>
+                    <p class="card-text">Exynos 9981, 16GB RAM, 1TB Storage,
+                      Spen+, Samsung Priority Care+</p>
+                    <a href="#" class="btn btn-success container-fluid" onclick="showToast()">Add to
+                      Cart</a>
+                  </div>
+                </div>
+                <div class="card" class="d-flex " style="width: 18rem;">
+                  <img id="mac" class="align-self-center"
+                    src="https://els.id/wp-content/uploads/2024/11/Lenovo-IdeaPad-Slim-5-14Q8X9.png">
+                  <div class="card-body">
+                    <span class="badge text-bg-success">Sale 30%</span>
+                    <h5 class="card-title">Lenovo Ideapad Slim 5 OLED</h5>
+                    <p class="card-text">I7-10225H, 8GB RAM, 512GB Storage, OLED
+                      Screen, Lenovo+ Warranty</p>
+                    <a href="#" class="btn btn-primary container-fluid" onclick="showToast()">Add to
+                      Cart</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="container ALL my-4">
+            <h1>FAQ</h1>
+            <div class="container FAQ mt-4">
+              <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button fs-5 fw-bold" type="button"
+                      data-bs-toggle="collapse" data-bs-target="#collapseOne"
+                      aria-expanded="true" aria-controls="collapseOne">
+                      Berapa Lama Estimasi Pengiriman?
+                    </button>
+                  </h2>
+                  <div id="collapseOne"
+                    class="accordion-collapse collapse show fs-5"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      Pengiriman dalam kota memakan waktu 1-2 hari kerja.
+                      Pengiriman luar kota 3-5 hari kerja tergantung lokasi.
+                      Kami menggunakan kurir terpercaya seperti JNE, J&T, dan
+                      SiCepat.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed fs-5 fw-bold"
+                      type="button"
+                      data-bs-toggle="collapse" data-bs-target="#collapseTwo"
+                      aria-expanded="false" aria-controls="collapseTwo">
+                      Apakah produk yang dijual bergaransi resmi?
+                    </button>
+                  </h2>
+                  <div id="collapseTwo" class="accordion-collapse collapse fs-5"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      Ya! Semua produk kami memiliki garansi resmi dari
+                      distributor. Laptop dan smartphone mendapatkan garansi 1
+                      tahun, sementara aksesoris 6 bulan.
+                    </div>
+                  </div>
+                </div>
+                <div class="accordion-item">
+                  <h2 class="accordion-header">
+                    <button class="accordion-button collapsed fs-5 fw-bold"
+                      type="button"
+                      data-bs-toggle="collapse" data-bs-target="#collapseThree"
+                      aria-expanded="false" aria-controls="collapseThree">
+                      Bagaimana cara melakukan retur produk?
+                    </button>
+                  </h2>
+                  <div id="collapseThree"
+                    class="accordion-collapse collapse fs-5"
+                    data-bs-parent="#accordionExample">
+                    <div class="accordion-body">
+                      Retur dapat dilakukan dalam 7 hari setelah produk
+                      diterima, selama produk masih dalam kondisi asli dan belum
+                      digunakan. Hubungi customer service kami melalui email
+                      atau WhatsApp.
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="container-fluid d-flex justify-content-center">
+            <div class="card align-content-center" style="width: 80rem; ">
+              <div class="card-body">
+                <h1 class="card-title fw-bold">About Techstore</h1>
+                <p class="card-text">TechStore adalah toko gadget online
+                  terpercaya yang menyediakan produk elektronik berkualitas
+                  dengan harga kompetitif. Berdiri sejak 2019, kami telah
+                  melayani lebih dari
+                  50.000 pelanggan di seluruh Indonesia.
+                </p>
+                <p class="card-text">2572030 - Vicki Ferdinand</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <div class="toast position-fixed bottom-0 end-0 p-3 z-index: 1000 " role="alert" aria-live="assertive"
+          aria-atomic="true" id="cartToast">
+          <div class="toast-header">
+            <strong class="me-auto fs-3">Alert🔔</strong>
+            <small>Recently</small>
+            <button type="button" class="btn-close" data-bs-dismiss="toast"
+              aria-label="Close"></button>
+          </div>
+          <div class="toast-body text-bg-success fs-5">
+            Produk berhasil ditambahkan ke keranjang!
+          </div>
+        </div>
+
+        <script>
+          function showToast() {
+          const toastEl = document.getElementById('cartToast'); // sesuaikan ID-nya
+          const toast = new bootstrap.Toast(toastEl);
+          toast.show();
+          }
+        </script>
+
+      </main>
+
+      <footer class="bg-black text-white text-center p-4 m-0">
+        &copy;TechStore | 2572030 - Vicki Ferdinand
+      </footer>
+    </body>
+  </html>

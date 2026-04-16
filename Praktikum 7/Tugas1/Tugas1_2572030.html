@@ -1,0 +1,144 @@
+<!doctype html>
+<html lang="id">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>EduSkill - 2572030</title>
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB"
+      crossorigin="anonymous"
+    />
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+      crossorigin="anonymous"
+    ></script>
+  </head>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    }
+  </style>
+  
+    <nav
+      class="navbar d-flex justify-content-between align-items-center bg-light border-bottom shadow-sm p-3"
+    >
+      <div class="logo text-primary fw-bold">EduSkill</div>
+      <ul class="nav-links list-unstyled d-flex gap-3 mb-lg-0">
+        <li><a href="#" class="text-decoration-none text-dark">Beranda</a></li>
+        <li>
+          <a href="#" class="text-decoration-none text-dark">Daftar Kelas</a>
+        </li>
+        <li><a href="#" class="text-decoration-none text-dark">Mentor</a></li>
+      </ul>
+      <button
+        class="btn-daftar text-light bg-primary py-1 px-3 rounded border-0"
+      >
+        Daftar Sekarang
+      </button>
+    </nav>
+    <section
+      class="hero bg-primary d-flex flex-column align-items-center text-center gap-2 py-5 px-7"
+    >
+      <h1 class="text-white fw-bold">Tingkatkan Karirmu di Dunia Digital</h1>
+      <p class="text-white">
+        Akses ratusan materi pembelajaran dari mentor berpengalaman di industri.
+      </p>
+      <div class="hero-buttons">
+        <button class="btn btn-light text-primary fw-bold">
+          Jelajahi Kelas
+        </button>
+        <button class="btn btn-primary text-light border-light m-2">
+          Pelajari Sistemnya
+        </button>
+      </div>
+    </section>
+    <section class="courses-section bg-secondary-emphasis px-3 py-1 d-grid">
+      <h2 class="text-center mt-4 fw-bold">Kelas Populer Bulan Ini</h2>
+      <p class="text-center mb-4">Pilih kelas yang sesuai dengan minatmu</p>
+      <div class="courses-grid gap-3 d-flex justify-content-evenly mb-5">
+        <div class="course-card" style="width: 30%">
+          <div
+            class="card-body bg-light p-5 shadow-lg bg-body-tertiary rounded"
+          >
+            <span class="badge text-bg-success">Pemula</span>
+            <h5 class="card-title">Fullstack Web Development</h5>
+            <p class="card-text">
+              Belajar membuat website dari nol menggunakan HTML, CSS, JS, dan
+              PHP.
+            </p>
+            <span class="harga text-primary fw-bold">Rp 499.000</span><br />
+            <button class="btn btn-outline-primary w-100 mt-2">
+              Lihat Silabus
+            </button>
+          </div>
+        </div>
+        <div class="course-card" style="width: 30%">
+          <div
+            class="card-body bg-light rounded p-5 shadow-lg bg-body-tertiary rounded"
+          >
+            <span class="badge text-bg-warning">Menengah</span>
+            <h5 class="card-title">Data Analytics for Business</h5>
+            <p class="card-text">
+              Kuasai pengolahan data menggunakan Python dan buat visualisasi
+              menarik.
+            </p>
+            <span class="harga text-primary fw-bold">Rp 499.000</span><br />
+            <button class="btn btn-outline-primary w-100 mt-2">
+              Lihat Silabus
+            </button>
+          </div>
+        </div>
+        <div class="course-card" style="width: 30%">
+          <div
+            class="card-body bg-light rounded p-5 shadow-lg bg-body-tertiary rounded"
+          >
+            <span class="badge text-bg-success">Pemula</span>
+            <h5 class="card-title">Fullstack Web Development</h5>
+            <p class="card-text">
+              Belajar membuat website dari nol menggunakan HTML, CSS, JS, dan
+              PHP.
+            </p>
+            <span class="harga text-primary fw-bold">Rp 499.000</span><br />
+            <button class="btn btn-outline-primary w-100 mt-2">
+              Lihat Silabus
+            </button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="bg-white py-5">
+        <div class="container">
+            <h3 class="text-center fw-bold">Apa Kata Mereka?</h3>
+            <div class="carousel slide" data-bs-ride="carousel">
+                <div class="carousel-inner text-center">
+                    <div class="carousel-item active">
+                        <p class="fs-5 fst-italic">"Materi sangat mudah dipahami dan mentornya sangat membantu saat ada error code!"</p>
+                        <h6 class="fw-bold">- Andi, Web Developer</h6>
+                    </div>
+                    <div class="carousel-item">
+                        <p class="fs-5 fst-italic">"Berkat kelas UI/UX, saya berhasil mendapatkan pekerjaan pertama saya sebagai desainer."</p>
+                        <h6 class="fw-bold">- Sarah, UI Designer</h6>
+                    </div>
+                </div>
+                <button class="carousel-control-prev" type="button" data-bs-target="#testimoniCarousel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon bg-dark rounded-circle" aria-hidden="true"></span>
+                </button>
+                <button class="carousel-control-next" type="button" data-bs-target="#testimoniCarousel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon bg-dark rounded-circle" aria-hidden="true"></span>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-dark text-white p-2 mt-3 text-center">
+      <p class="futer mb-0">&copy; 2026 2572030 Vicki Ferdinand. All rights reserved.</p>
+    </footer>
+  </body>
+</html>
