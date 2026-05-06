@@ -1,0 +1,98 @@
+<!-- Vicki Ferdinand - 2572030 -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game - 2572030</title>
+</head>
+<style>
+    #childP{
+
+        font-size: 50px;
+        border: 1px solid black;
+        border-radius: 5px;
+        width: auto;
+        background-color: rgb(152, 135, 135);
+    }
+    .Pictures{
+        display: flex;
+        gap: 8px;
+        align-items: center;
+    }
+    .Container{
+        border: 1px solid blue
+    }
+</style>
+<body>
+    <div class="Container">
+        <div></div>
+        <p id="Player">0</p>
+        <p>-</p>
+        <div id="punyaP"></div>
+        <p id="Computer">0</p>
+        <div id="punyaC"></div>
+        <div class="Pictures">
+            <button id="childP" class="1" onclick="main(1)">🪨</button>
+            <button id="childP" class="2" onclick="main(2)">📜</button>
+            <button id="childP" class="3" onclick="main(3)">✂️</button>
+        </div>
+        <div id="output"></div>
+    </div>
+    <script>
+        var scorePlayer = 0;
+        var scoreComputer = 0;
+        function main(nilai){
+            var komputer = Math.floor(Math.random()*3) + 1
+
+            if(nilai == 1){
+                var hasilUser = 'batu'
+                document.getElementById("punyaP").innerHTML = "<img src='rock.png'>";
+            }
+            else if (nilai == 2){
+                var hasilUser = 'kertas'
+                document.getElementById("punyaP").innerHTML = "<img src='paper.png'>";
+
+            }
+            else{
+                var hasilUser = 'gunting'
+                document.getElementById("punyaP").innerHTML = "<img src='scissor.png'>";
+            }
+
+            if(komputer == 1){
+                var hasilCOM = 'batu'
+                document.getElementById("punyaC").innerHTML = "<img src='rock.png'>";
+            }
+            else if (komputer == 2){
+                var hasilCOM = 'kertas'
+                document.getElementById("punyaC").innerHTML = "<img src='paper.png'>";
+            }
+            else{
+                var hasilCOM = 'gunting'
+                document.getElementById("punyaC").innerHTML = "<img src='scissor.png'>";
+            }
+            
+    
+
+            if(nilai == komputer){
+                document.getElementById("output").innerHTML = "DRAW!";
+                
+            }
+            else if((hasilUser == 'batu' && hasilCOM == 'kertas')||(hasilUser == 'kertas' && hasilCOM == 'gunting')||(hasilUser == 'gunting' && hasilCOM == 'batu') ){
+                document.getElementById("output").innerHTML = "COMPUTER WIN!";
+                scoreComputer = scoreComputer + 1
+            }
+            else{
+                document.getElementById("output").innerHTML = "PLAYER WIN!";
+                scorePlayer = scorePlayer + 1
+            }
+
+            document.getElementById("Player").innerHTML=scorePlayer;
+            document.getElementById("Computer").innerHTML=scoreComputer;
+            return console.log(komputer,scorePlayer,scoreComputer)
+            
+        
+        }
+    </script>
+</body>
+</html>

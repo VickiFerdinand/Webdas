@@ -1,0 +1,65 @@
+<!-- 2572030 - Vicki Ferdinand -->
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quiz - 2572030</title>
+    </head>
+    <body>
+        <h1>Quiz Matematika</h1>
+        <p>Klik Tombol di bawah ini untuk mulai mengerjakan soal matematika acak. Ketik "exit" atau tekan Cancel untuk berhenti</p>
+        <button onclick="mulaiQuiz()">Mulai Quiz</button>
+        <h2 id="result"></h2>
+        <p id="datetime"></p>
+        <script>
+            function mulaiQuiz() { 
+                const operasi = ["+","-",'*']
+                var op = Math.floor(Math.random() * operasi.length)
+                var gameJalan = true
+                var skor = 0
+                var totalGame = 0
+                while(gameJalan == true){
+                    var angka1 = Math.floor(Math.random() * 20) + 1
+                    var angka2 = Math.floor(Math.random() * 20) + 1
+                    var inputP = prompt(`Berapakah hasil dari,${angka1} ${operasi[op]} ${angka2}=`);
+                    
+                    if(operasi[op] == "+"){
+                        var kj = angka1 + angka2
+                    }
+                    
+                    else if(operasi[op] == "-"){
+                        var kj = angka1 - angka2
+                    }
+
+                    else{
+                        var kj = angka1 * angka2
+                    }
+                    
+
+                    if (inputP == 'exit'){
+                        break;
+                    }
+                    else{
+                        if(parseFloat(inputP) == kj){
+                            alert("Benar!")
+                            skor += 1
+                            totalGame += 1
+                        }
+    
+                        else if (parseFloat(inputP) != kj) {
+                            alert(`Jawaban Salah! Seharusnya: ${kj}`)
+                            totalGame += 1
+                        }
+                    }
+                }
+                var decision = confirm('Apakah user ingin menampilkan hasil?')
+
+                    document.getElementById("result").innerHTML=`Skor akhir ${skor}/${totalGame}`
+                    document.getElementById("datetime").innerHTML="Selesai pada: " + Date().toLocaleString()
+                
+
+            }
+        </script>
+    </body>
+</html>
