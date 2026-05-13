@@ -1,0 +1,103 @@
+<!-- Vicki Ferdinand - 2572030 -->
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Calculator - 2572030</title>
+        <style>
+            body{
+                background-color: #F0F2F5;
+            }
+            #container{
+                margin: 0 auto;
+                background-color: #FFFFFF;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                width: 400px;
+                
+            }
+
+            #formKonversi{
+                background-color: #F9F9F9;
+                margin-top: 20px;
+                padding: 4px;
+                width: 300px;
+                text-align: center;
+                border-radius: 4px;
+            }
+        </style>
+    </head>
+    <body>
+        <div id="container">
+            <h1>Temperature Calculator</h1>
+            <h4>Dari Suhu:</h4>
+            <select id="suhu">
+                <option id="Celcius" value="Celcius">Celcius (°C)</option>
+                <option id="Fahrenheit" value="Fahrenheit">Fahrenheit (°F)</option>
+                <option id="Kelvin" value="Kelvin">Kelvin(K)</option>
+            </select>
+            <h4>Nilai:</h4>
+            <input type="number" id="nilai" placeholder="Masukkan Angka">
+            <div id="formKonversi">
+                <h1>Hasil Konversi: </h1>
+                <p id="cekIsi"></p>
+                <p id="hasilKonvert"></p>
+            </div>
+            <h4>©2026 2572030 - Vicki Ferdinand. All rights reserved.</h4>
+        </div>
+
+        <script> 
+        // Commit awal variable 
+    
+        var inputan = document.getElementById("nilai")
+        var hasilKonversi = document.getElementById("hasilKonvert")
+        var suhu = document.getElementById("suhu")
+        function calculate() { 
+        // Logika perhitungan 
+        var angka = parseFloat(inputan.value)
+        var suhuType = suhu.value
+        if(isNaN(angka)){
+            document.getElementById("cekIsi").innerHTML="Masukkan nilai untuk lihat hasil"
+            hasilKonversi.innerHTML = ""
+        }
+        else{
+            document.getElementById("cekIsi").innerHTML=""
+            hasilKonversi.innerHTML = ""
+            
+            const units = ['Celcius','Fahrenheit','Kelvin']
+            let results = []
+
+            if(suhuType == "Celcius"){
+                let Fahrenheit = (angka*9/5) + 32
+                let Kelvin = angka + 273
+                results = [angka, Fahrenheit, Kelvin]
+            }
+            else if(suhuType == "Fahrenheit"){
+                let Celcius = (angka-32)*5/9
+                let Kelvin = Celcius + 273
+                results = [Celcius, angka, Kelvin]
+            }
+            else if(suhuType == 'Kelvin'){
+                let Celcius = angka - 273
+                let Fahrenheit = (Celcius * 9/5) + 32
+                results = [Celcius, Fahrenheit, angka]
+            }
+            results.forEach(function (value, index) {
+                if (units[index] !== suhuType) { 
+                    hasilKonversi.innerHTML += value.toFixed(2) + " " + units[index] + "<br>";
+                }
+            });
+        }
+    }
+    
+    // Penggunakan event Listener 
+    inputan.addEventListener('input', calculate); 
+    suhu.addEventListener('change', calculate); 
+
+    calculate()
+        
+        </script> 
+    </body>
+</html>
