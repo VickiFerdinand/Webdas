@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>ToDoList - 2572030</title>
+        <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+        <style> 
+        body { 
+            padding: 30px; 
+        } 
+ 
+        .container { 
+            max-width: 500px; 
+            background: white; 
+            padding: 20px; 
+            border-radius: 8px; 
+            box-shadow: 0 4px 8px lightgrey; 
+            margin: auto; 
+        } 
+ 
+        .input-group { 
+            margin-bottom: 5px; 
+        } 
+ 
+        input { 
+            width: 70%; 
+            padding: 8px; 
+            border: 1px solid #ddd; 
+            border-radius: 4px; 
+        } 
+ 
+        button { 
+            padding: 6px 12px; 
+            cursor: pointer; 
+            border: none; 
+            color: white; 
+            border-radius: 4px; 
+        } 
+ 
+        #btnTambah { 
+            background: #28a745; 
+            padding: 8px 12px; 
+        } 
+ 
+        .danger { 
+            color: red; 
+            font-weight: bold; 
+        } 
+ 
+        ul { 
+            list-style: none; 
+            padding: 0; 
+        } 
+ 
+        li { 
+            padding: 10px 20px; 
+            background: #fff3cd; 
+            margin-bottom: 5px; 
+            border-radius: 4px; 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+        } 
+ 
+        table { 
+            width: 100%; 
+            border-collapse: collapse; 
+            margin-top: 20px; 
+        } 
+ 
+        th, 
+        td { 
+            border: 1px solid #ddd; 
+            padding: 10px; 
+            text-align: left; 
+        } 
+ 
+        th { 
+            background-color: #e9ecef; 
+        } 
+ 
+        button { 
+            margin-right: 5px; 
+        } 
+ 
+        .btn-done { 
+            background-color: #007bff; 
+        } 
+ 
+        .btn-edit, 
+        .btn-submit { 
+            background-color: #ffff00; 
+            color: black; 
+        } 
+ 
+        .btn-delete { 
+            background-color: #dc3545; 
+        } 
+ 
+        h3 { 
+            margin-top: 30px; 
+            border-bottom: 2px solid #eee; 
+            padding-bottom: 5px; 
+        } 
+ 
+        footer { 
+            padding: 20px; 
+            text-align: center; 
+        } 
+
+        .teksTugasInput {
+            width: 50%;
+        }
+
+        .grupKesamping {
+            display: flex;
+            flex-direction: row;
+        }
+    </style>
+    </head>
+
+    <body>
+        <div class="container">
+            <h2>My To Do List</h2>
+
+            <div class="input-group">
+                <input type="text" id="taskInput" placeholder="Tambah tugas..."
+                    maxlength="20">
+                <button id="btnTambah">Tambah</button>
+            </div>
+
+            <h3>Belum Selesai</h3>
+            <ul id="taskList">
+            </ul>
+
+            <h3>Sudah Selesai (Riwayat)</h3>
+            <table id="completedTable">
+                <thead>
+                    <tr>
+                        <th>Nama Tugas</th>
+                        <th style="width: 100px;">Aksi</th>
+                    </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <footer>
+            <strong>&copy; 2026 2572030 - Vicki Ferdinand. All rights reserved.</strong>
+        </footer>
+
+        <script> 
+            $(document).ready(function () {
+                
+                $("#btnTambah").click(function(){
+                    let inputBaru = $.trim($("#taskInput").val());
+                    
+                    if (inputBaru === ""){
+                        alert("Woy isi yg bener");
+                    } else {
+                        let elemenList = `
+                            <li>
+                                <span class="tulisanTugas">${inputBaru}</span>
+                                <div class="grupKesamping">
+                                    <button class="btn-done">Selesai</button>
+                                    <button class="btn-edit">Edit</button>
+                                </div>
+                            </li>
+                        `;
+                       
+                        $("#taskList").append(elemenList);
+                        $("#taskInput").val("");
+                    }
+                });
+
+                $(document).on("click", ".btn-edit", function(){
+                    let bungkusUtama = $(this).closest("li");
+                    let teksLama = bungkusUtama.find(".tulisanTugas").text();
+                    let kotakEdit = `<input type="text" class="teksTugasInput" value="${teksLama}">`;
+                    bungkusUtama.find(".tulisanTugas").replaceWith(kotakEdit);
+                    $(this).removeClass("btn-edit").addClass("btn-submit").text("Simpan");
+                });
+
+                $(document).on("click", ".btn-submit", function(){
+                    let bungkusUtama = $(this).closest("li");
+                    let teksBaru = $.trim(bungkusUtama.find(".teksTugasInput").val());
+                    
+                    if (teksBaru === ""){
+                        alert("Tugas tidak boleh kosong!");
+                        return;
+                    }
+
+                    let teksBiasa = `<span class="tulisanTugas">${teksBaru}</span>`;
+                    bungkusUtama.find(".teksTugasInput").replaceWith(teksBiasa);
+                    
+                    $(this).removeClass("btn-submit").addClass("btn-edit").text("Edit");
+                });
+
+                $(document).on("click", ".btn-done", function(){
+                    let bungkusUtama = $(this).closest("li");
+                    let wujudSpan = bungkusUtama.find(".tulisanTugas");
+                    let wujudInput = bungkusUtama.find(".teksTugasInput");
+                    
+                    let tugasSelesai = "";
+                    
+                    if (wujudSpan.length > 0) {
+                        tugasSelesai = wujudSpan.text();
+                    } else if (wujudInput.length > 0) {
+                        tugasSelesai = wujudInput.val();
+                    }
+
+                    if ($.trim(tugasSelesai) === "") {
+                        alert("Tugas error, tidak bisa diselesaikan!");
+                        return;
+                    }
+
+                    let barisKebawah = `
+                        <tr>
+                            <td>${tugasSelesai}</td>
+                            <td><button class="btn-delete">Hapus</button></td>
+                        </tr>
+                    `;
+
+                    $("#completedTable tbody").append(barisKebawah);
+                    bungkusUtama.remove();
+                });
+
+                $(document).on("click", ".btn-delete", function(){
+                    $(this).closest("tr").remove();
+                });
+
+            });     
+        </script>
+    </body>
+</html>

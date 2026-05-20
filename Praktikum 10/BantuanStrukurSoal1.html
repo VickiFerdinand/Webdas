@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Catatan Harian - Latihan</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: Arial, sans-serif; background: #f0f4f8; }
+
+    /* ===== LOGIN PAGE ===== */
+    #loginPage { display: flex; justify-content: center; align-items: center; height: 100vh; }
+    .login-card { background: white; padding: 32px 36px; width: 320px; border: 1px solid #ddd; }
+    .login-card h2 { margin-bottom: 6px; font-size: 20px; }
+    .login-card p { font-size: 13px; color: #777; margin-bottom: 20px; }
+    .login-card label { font-size: 13px; font-weight: bold; display: block; margin-bottom: 4px; }
+    .login-card input { width: 100%; padding: 8px; border: 1px solid #ccc; margin-bottom: 14px; font-size: 14px; }
+    .login-card button { width: 100%; padding: 9px; background: #4a90d9; color: white; border: none; font-size: 14px; cursor: pointer; }
+    .login-card button:hover { background: #357abd; }
+    #loginError { color: red; font-size: 12px; margin-top: 8px; display: none; }
+
+    /* ===== APP PAGE ===== */
+    #appPage { display: none; }
+    .topbar { background: #4a90d9; color: white; padding: 12px 24px; display: flex; justify-content: space-between; align-items: center; }
+    .topbar h1 { font-size: 18px; }
+    .topbar-right { display: flex; align-items: center; gap: 12px; }
+    .topbar-right span { font-size: 14px; }
+    #btnLogout { background: #e53935; color: white; border: none; padding: 6px 14px; cursor: pointer; font-size: 13px; }
+    .container { max-width: 680px; margin: 28px auto; padding: 0 16px; }
+
+    /* Form tambah catatan */
+    .form-card { background: white; border: 1px solid #ddd; padding: 20px; margin-bottom: 20px; }
+    .form-card h3 { font-size: 15px; margin-bottom: 12px; }
+    .form-card input, .form-card textarea { width: 100%; border: 1px solid #ccc; padding: 8px; font-size: 14px; margin-bottom: 10px; font-family: Arial; }
+    .form-card textarea { height: 80px; resize: vertical; }
+    .form-row { display: flex; gap: 8px; }
+    .form-row select { padding: 8px; border: 1px solid #ccc; font-size: 13px; background: white; }
+    .form-card .btn-simpan { padding: 8px 20px; background: #4a90d9; color: white; border: none; cursor: pointer; font-size: 13px; }
+    .form-card .btn-simpan:hover { background: #357abd; }
+
+    /* Filter & stats */
+    .meta-row { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; flex-wrap: wrap; gap: 8px; }
+    .filter-btns button { padding: 5px 12px; border: 1px solid #ccc; background: white; font-size: 12px; cursor: pointer; margin-right: 4px; }
+    .filter-btns button.active { background: #4a90d9; color: white; border-color: #4a90d9; }
+    .stats-text { font-size: 12px; color: #888; }
+
+    /* Catatan list */
+    .note-card { background: white; border: 1px solid #ddd; padding: 14px 16px; margin-bottom: 10px; }
+    .note-header { display: flex; justify-content: space-between; align-items: flex-start; }
+    .note-title { font-size: 15px; font-weight: bold; }
+    .note-actions { display: flex; gap: 6px; }
+    .note-actions button { border: none; background: transparent; font-size: 12px; cursor: pointer; color: #888; padding: 2px 6px; }
+    .note-actions .btn-hapus:hover { color: red; }
+    .note-actions .btn-pin { font-size: 14px; }
+    .note-body { font-size: 13px; color: #444; margin: 8px 0; line-height: 1.6; }
+    .note-footer { display: flex; gap: 10px; align-items: center; margin-top: 6px; }
+    .badge { font-size: 11px; padding: 2px 8px; border-radius: 3px; }
+    .badge-kerja { background: #d0e9ff; color: #1565c0; }
+    .badge-pribadi { background: #fce4ec; color: #c62828; }
+    .badge-ide { background: #e8f5e9; color: #2e7d32; }
+    .badge-penting { background: #fff8e1; color: #f57f17; }
+    .note-date { font-size: 11px; color: #aaa; }
+    .pinned-label { font-size: 11px; color: #f57f17; }
+    .empty-msg { text-align: center; color: #aaa; font-size: 14px; padding: 32px 0; }
+    #toastMsg { position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%); background: #333; color: white; padding: 8px 20px; font-size: 13px; display: none; }
+  </style>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+
+<body>
+
+  <!-- ===== LOGIN PAGE ===== -->
+  <div id="loginPage">
+    <div class="login-card">
+      <h2>Catatan Harian</h2>
+      <p>Masuk untuk mulai mencatat</p>
+      <label>Nama Pengguna</label>
+      <input type="text" id="inputNama" placeholder="Contoh: Budi">
+      <label>PIN (4 digit)</label>
+      <input type="password" id="inputPin" placeholder="Masukkan PIN" maxlength="4">
+      <button id="btnMasuk">Masuk</button>
+      <p id="loginError">Nama atau PIN salah.</p>
+      <p style="font-size:11px; color:#aaa; margin-top:12px;">Demo: nama <strong>budi</strong>, PIN <strong>1234</strong></p>
+    </div>
+  </div>
+
+  <!-- ===== APP PAGE ===== -->
+  <div id="appPage">
+    <div class="topbar">
+      <h1>Catatan Harian</h1>
+      <div class="topbar-right">
+        <span id="namaUser"></span>
+        <button id="btnLogout">Logout</button>
+      </div>
+    </div>
+    <div class="container">
+      <div class="form-card">
+        <h3>Tambah Catatan</h3>
+        <input type="text" id="inputJudul" placeholder="Judul catatan...">
+        <textarea id="inputIsi" placeholder="Isi catatan..."></textarea>
+        <div class="form-row">
+          <select id="selectKategori">
+            <option value="pribadi">Pribadi</option>
+            <option value="kerja">Kerja</option>
+            <option value="ide">Ide</option>
+            <option value="penting">Penting</option>
+          </select>
+          <button class="btn-simpan" id="btnSimpan">Simpan Catatan</button>
+        </div>
+      </div>
+      <div class="meta-row">
+        <div class="filter-btns">
+          <button class="filter-btn active" data-filter="semua">Semua</button>
+          <button class="filter-btn" data-filter="pribadi">Pribadi</button>
+          <button class="filter-btn" data-filter="kerja">Kerja</button>
+          <button class="filter-btn" data-filter="ide">Ide</button>
+          <button class="filter-btn" data-filter="penting">Penting</button>
+        </div>
+        <span class="stats-text" id="statsText"></span>
+      </div>
+      <div id="noteList"></div>
+    </div>
+  </div>
+  <div id="toastMsg"></div>
+
+  <script>
+    const VALID_NAMA = "budi";
+    const VALID_PIN = "1234";
+    let activeFilter = "semua";
+
+    // ===== HELPER (Fungsi Bantuan sudah disediakan) =====
+    function showToast(msg) {
+      $('#toastMsg').text(msg).stop(true).hide().fadeIn(300).delay(1600).fadeOut(400);
+    }
+    function formatDate(ts) {
+      const d = new Date(ts);
+      const jam = d.getHours().toString().padStart(2, '0');
+      const menit = d.getMinutes().toString().padStart(2, '0');
+      return `${d.getDate()}/${d.getMonth() + 1}/${d.getFullYear()} ${jam}:${menit}`;
+    }
+    function getBadgeClass(kat) {
+      const map = { kerja: 'badge-kerja', pribadi: 'badge-pribadi', ide: 'badge-ide', penting: 'badge-penting' };
+      return map[kat] || '';
+    }
+
+    // ===== FUNGSI INTI (Perlu Diisi) =====
+    
+    function getNotes() {
+      // TODO 1: Ambil data dari localStorage dengan key "catatanList".
+      // TODO 2: Jika data ada, kembalikan nilai tersebut dalam bentuk array JavaScript menggunakan JSON.parse().
+      // TODO 3: Jika data kosong, kembalikan array kosong [].
+      
+    }
+
+    function saveNotes(arr) {
+      // TODO 4: Simpan parameter 'arr' ke localStorage dengan key "catatanList".
+      // Bantuan: Ingat untuk mengubah array menjadi teks menggunakan JSON.stringify(arr)
+      
+    }
+
+    function renderNotes() {
+      const notes = getNotes();
+
+      // TODO 5: Urutkan array 'notes' agar catatan dengan status pinned == true berada di atas.
+      // Bantuan: notes.sort((a, b) => b.pinned - a.pinned);
+      
+
+      // TODO 6: Buat array baru bernama 'filtered' yang memfilter 'notes' berdasarkan 'activeFilter'.
+      // Jika activeFilter adalah 'semua', tampilkan semua. Jika tidak, cocokkan dengan n.kategori.
+      let filtered = []; // Ganti dengan logika filter yang benar
+
+      $('#noteList').empty();
+      $('#statsText').text(`Menampilkan ${filtered.length} dari ${notes.length} catatan`);
+
+      if (filtered.length === 0) {
+        $('#noteList').append('<p class="empty-msg">Belum ada catatan.</p>');
+        return;
+      }
+
+      // TODO 7: Lakukan perulangan (forEach) pada array 'filtered'.
+      // Di dalam perulangan, rakit HTML menggunakan variabel dari data catatan (n), 
+      // lalu append() HTML tersebut ke dalam '#noteList'.
+      /* Bantuan HTML (Silakan masukkan ke dalam perulangan):
+        const cardHTML = `
+          <div class="note-card" data-id="${n.id}">
+            <div class="note-header">
+              <span class="note-title">${n.judul}</span>
+              <div class="note-actions">
+                <button class="btn-pin">Pin</button>
+                <button class="btn-hapus">Hapus</button>
+              </div>
+            </div>
+            <div class="note-body">${n.isi}</div>
+            <div class="note-footer">
+              <span class="badge ${getBadgeClass(n.kategori)}">${n.kategori}</span>
+              <span class="note-date">${formatDate(n.timestamp)}</span>
+            </div>
+          </div>
+        `;
+      */
+      
+    }
+
+    // ===== EVENT LISTENER =====
+    $(document).ready(function () {
+
+      // Cek sesi login saat halaman dimuat
+      if (localStorage.getItem("namaUser")) {
+        $('#loginPage').hide();
+        $('#appPage').show();
+        $('#namaUser').text(`Halo, ${localStorage.getItem("namaUser")}!`);
+        renderNotes();
+      }
+
+      // EVENT: Login
+      $('#btnMasuk').on('click', function () {
+        const nama = $.trim($('#inputNama').val()).toLowerCase();
+        const pin = $('#inputPin').val();
+
+        // TODO 8: Buat logika if-else. 
+        // Jika nama sama dengan VALID_NAMA dan pin sama dengan VALID_PIN:
+        // - Simpan nama ke localStorage
+        // - Sembunyikan #loginPage, tampilkan #appPage
+        // - Panggil renderNotes()
+        // Jika gagal: Tampilkan #loginError
+        
+      });
+
+      // EVENT: Logout
+      $('#btnLogout').on('click', function () {
+        // TODO 9: Hapus item "namaUser" dari localStorage, lalu muat ulang halaman dengan location.replace(location.href).
+        
+      });
+
+      // EVENT: Simpan Catatan
+      $('#btnSimpan').on('click', function () {
+        const judul = $.trim($('#inputJudul').val());
+        const isi = $.trim($('#inputIsi').val());
+        const kat = $('#selectKategori').val();
+
+        if (!judul || !isi) {
+          showToast('Judul dan isi tidak boleh kosong!');
+          return;
+        }
+
+        // TODO 10: Ambil catatan lama menggunakan getNotes().
+        // TODO 11: Masukkan objek catatan baru ke posisi teratas array (unshift).
+        // Objek berisi: id (Date.now()), judul, isi, kategori, timestamp (Date.now()), pinned (false).
+        // TODO 12: Simpan kembali array ke localStorage menggunakan saveNotes(arrayNya).
+        // TODO 13: Kosongkan input judul dan isi, lalu panggil renderNotes().
+        
+      });
+
+      // EVENT: Filter Kategori
+      $(document).on('click', '.filter-btn', function () {
+        $('.filter-btn').removeClass('active');
+        $(this).addClass('active');
+        activeFilter = $(this).data('filter');
+        renderNotes();
+      });
+
+      // EVENT: Hapus Catatan
+      $(document).on('click', '.btn-hapus', function () {
+        const id = parseInt($(this).closest('.note-card').data('id'));
+        
+        // TODO 14: Ambil semua catatan, filter buang catatan yang memiliki ID sama dengan 'id',
+        // lalu simpan kembali ke localStorage. Jangan lupa panggil renderNotes().
+        
+      });
+
+      // EVENT: Pin Catatan
+      $(document).on('click', '.btn-pin', function () {
+        const id = parseInt($(this).closest('.note-card').data('id'));
+        
+        // TODO 15: Ambil semua catatan, cari catatan berdasarkan 'id'.
+        // Jika ketemu, balikkan nilai status pinned-nya (true jadi false, false jadi true).
+        // Simpan kembali array tersebut dan panggil renderNotes().
+        
+      });
+
+    });
+  </script>
+
+</body>
+
+</html>
