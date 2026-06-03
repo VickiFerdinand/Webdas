@@ -1,0 +1,530 @@
+<!-- 2572030 - Vicki Ferdinand -->
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forum Diskusi - 2572030</title>
+
+
+<style>
+
+body{
+    font-family: Arial, sans-serif;
+    background:#f5f5f5;
+    margin:0;
+    padding:20px;
+}
+
+
+.container{
+    max-width:900px;
+    margin:auto;
+}
+
+
+h1{
+    text-align:center;
+}
+
+
+.card{
+    background:white;
+    padding:15px;
+    border-radius:10px;
+    margin-bottom:15px;
+    box-shadow:0 2px 5px rgba(0,0,0,0.1);
+}
+
+
+input,
+textarea{
+    width:100%;
+    padding:10px;
+    margin-top:8px;
+    margin-bottom:10px;
+    box-sizing:border-box;
+}
+
+
+button{
+    padding:8px 14px;
+    cursor:pointer;
+    margin-right:5px;
+}
+
+
+.comment-header{
+    display:flex;
+    justify-content:space-between;
+    margin-bottom:10px;
+}
+
+
+.username{
+    font-weight:bold;
+}
+
+
+.reply-box{
+    margin-left:30px;
+    margin-top:10px;
+    border-left:3px solid #ddd;
+    padding-left:15px;
+    display:none;
+}
+
+
+.reply-item{
+    background:#fafafa;
+    padding:10px;
+    margin-bottom:8px;
+    border-radius:5px;
+}
+
+
+.reply-form{
+    display:none;
+    margin-top:10px;
+}
+
+
+.like-btn{
+    background:#007bff;
+    color:white;
+    border:none;
+}
+
+
+.show-btn{
+    background:#28a745;
+    color:white;
+    border:none;
+}
+
+
+.reply-btn{
+    background:#ff9800;
+    color:white;
+    border:none;
+}
+
+
+.send-btn{
+    background:#444;
+    color:white;
+    border:none;
+}
+
+
+</style>
+</head>
+<body>
+
+
+<div class="container">
+
+
+    <h1>Forum Diskusi JSON & Local Storage</h1>
+
+
+    <div class="card">
+
+
+        <h3>Tambah Komentar</h3>
+
+
+        <input
+            type="text"
+            id="username"
+            placeholder="Nama">
+
+
+        <textarea
+            id="comment"
+            rows="4"
+            placeholder="Tulis komentar..."></textarea>
+
+
+        <button
+            class="send-btn"
+            onclick="addComment()">
+            Kirim Komentar
+        </button>
+
+
+    </div>
+
+
+    <div id="commentList"></div>
+
+
+</div>
+
+
+<script>
+
+/*
+==========================================
+FORUM DISKUSI
+JSON + LOCAL STORAGE
+
+TUGAS:
+Lengkapi bagian yang bertuliskan TODO.
+
+Fitur yang harus berfungsi:
+1. Tambah Komentar
+2. Like Komentar
+3. Show / Hide Reply
+4. Tambah Reply
+5. Simpan ke Local Storage
+==========================================
+*/
+
+
+// ==========================================
+// DATA AWAL
+// ==========================================
+const defaultComments = [
+
+{
+    id:1,
+    username:"Andi",
+    comment:"Belajar JSON ternyata cukup mudah.",
+    likes:5,
+    replies:[
+        {
+            username:"Budi",
+            comment:"Setuju sekali."
+        },
+        {
+            username:"Sinta",
+            comment:"JSON lebih enak dibaca."
+        }
+    ]
+},
+
+{
+    id:2,
+    username:"Rina",
+    comment:"Local Storage cocok untuk project kecil.",
+    likes:2,
+    replies:[]
+}
+
+];
+
+
+// ==========================================
+// LOAD DATA
+// ==========================================
+// TODO:
+// Ambil data dari localStorage
+// Jika tidak ada data gunakan defaultComments
+
+let comments = JSON.parse(
+    localStorage.getItem("comments")
+)
+|| defaultComments;
+
+
+// ==========================================
+// SAVE DATA
+// ==========================================
+// TODO:
+// Simpan array comments ke localStorage
+function saveData(){
+    // Gunakan:
+    localStorage.setItem(
+        "comments",JSON.stringify(comments)
+    )
+
+}
+
+
+// ==========================================
+// MENAMPILKAN KOMENTAR
+// ==========================================
+function renderComments(){
+
+    const container =
+    document.getElementById("commentList");
+
+    container.innerHTML = "";
+
+    comments.forEach(comment => {
+
+        const card =
+        document.createElement("div");
+
+        card.className = "card";
+
+        // TODO:
+        // Lengkapi template berikut:
+        // - username
+        // - jumlah likes
+        // - isi komentar
+        // - tombol Like
+        // - tombol Show Replies
+        // - tombol Reply
+        // - form reply
+        // - daftar reply
+
+        card.innerHTML = `
+
+            <div class="comment-header">
+
+                <div class="username">
+                    ${comment.username}
+                </div>
+
+                <div>
+                    👍 ${comment.likes}
+                </div>
+
+            </div>
+
+            <p>${comment.comment}</p>
+
+            <button
+                class="like-btn"
+                onclick="likeComment(${comment.id})">
+
+                Like
+
+            </button>
+
+            <button
+                class="show-btn"
+                onclick="toggleReplies(${comment.id})">
+
+                Show Replies (${comment.replies.length})
+
+            </button>
+
+            <button
+                class="reply-btn"
+                onclick="showReplyForm(${comment.id})">
+
+                Reply
+
+            </button>
+
+            <div
+                id="replyForm-${comment.id}"
+                class="reply-form">
+
+                <input
+                    type="text"
+                    id="replyName-${comment.id}"
+                    placeholder="Nama">
+
+                <textarea
+                    id="replyText-${comment.id}"
+                    rows="3"
+                    placeholder="Tulis reply..."></textarea>
+
+                <button
+                    class="send-btn"
+                    onclick="addReply(${comment.id})">
+
+                    Kirim Reply
+
+                </button>
+
+            </div>
+
+            <div
+                id="replyBox-${comment.id}"
+                class="reply-box">
+
+                ${comment.replies.map(reply => `
+
+                    <div class="reply-item">
+
+                        <strong>
+                            ${reply.username}
+                        </strong>
+
+                        <p>
+                            ${reply.comment}
+                        </p>
+
+                    </div>
+
+                `).join("")}
+
+            </div>
+
+        `;
+
+        container.appendChild(card);
+
+    });
+
+}
+
+
+// ==========================================
+// MENAMBAH KOMENTAR
+// ==========================================
+// TODO:
+// Lengkapi langkah-langkah berikut
+function addComment(){
+
+    // 1. Ambil username
+    usernameKeren = document.getElementById("username").value
+    // 2. Ambil isi komentar
+    komentarKeren = document.getElementById("comment").value
+    // 3. Validasi tidak boleh kosong
+    if (usernameKeren !== "" || komentarKeren !== ""){
+        comments.unshift({
+            id: Date.now(),
+            username: usernameKeren,
+            comment: komentarKeren,
+            likes: 0,
+            replies: []
+        })
+    }
+    saveData()
+    // 4. Tambahkan object komentar baru
+    
+    /*
+    Contoh struktur:
+
+    {
+        id: Date.now(),
+        username: username,
+        comment: commentText,
+        likes: 0,
+        replies: []
+    }
+    */
+
+    // 5. Simpan data
+
+    // 6. Render ulang
+    renderComments()
+    // 7. Kosongkan form
+    document.getElementById("username").value = ""
+    document.getElementById("comment").value = ""
+
+}
+
+
+// ==========================================
+// MENAMBAH LIKE
+// ==========================================
+// TODO:
+// Cari komentar berdasarkan id
+// Tambahkan likes sebanyak 1
+
+function likeComment(id){
+
+    // Cari komentar
+    let catchComentar = comments.find(sholihin => sholihin.id === id)
+    // Tambah likes
+    catchComentar.likes++
+    // Simpan data
+    saveData()
+    // Render ulang
+    renderComments()
+
+}
+
+
+// ==========================================
+// SHOW / HIDE REPLY
+// ==========================================
+// TODO:
+// Toggle display block dan none
+function toggleReplies(id){
+
+    // Ambil elemen replyBox
+    const box = 
+    document.getElementById(`replyBox-${id}`);
+    // Jika tampil -> sembunyikan
+    if (box.style.display === "block"){
+        box.style.display = "none";
+    }
+    else{
+        box.style.display = "block";
+    }
+    // Jika sembunyi -> tampilkan
+
+}
+
+
+// ==========================================
+// SHOW / HIDE FORM REPLY
+// ==========================================
+// TODO:
+// Toggle form reply
+function showReplyForm(id){
+
+    // Ambil elemen form
+    const form = 
+    document.getElementById(`replyForm-${id}`);
+    // Toggle display
+    if(form.style.display === "block"){
+        form.style.display = "none";
+    }
+    else{
+        form.style.display = "block";
+    }
+}
+
+// ==========================================
+// MENAMBAH REPLY
+// ==========================================
+// TODO:
+// Lengkapi proses menambah reply
+function addReply(id){
+    // Ambil nama
+    const name = document.getElementById(`replyName-${id}`).value;
+    
+    // Ambil isi reply
+    const text = document.getElementById(`replyText-${id}`).value;
+
+    // Validasi
+    if(
+        name.trim() === "" ||
+        text.trim() === ""
+    ){
+        alert("Isi semua field!");
+        return;
+    }
+
+    // Cari komentar tujuan
+    const comment = comments.find(
+        c => c.id === id
+    );
+
+    // Tambahkan object reply baru
+    comment.replies.push({
+        username: name,
+        comment: text
+    });
+
+    // Simpan data
+    saveData();
+
+    // Render ulang
+    renderComments();
+
+}
+
+
+// ==========================================
+// PROGRAM DIMULAI DI SINI
+// ==========================================
+renderComments();
+
+</script>
+
+
+</body>
+</html>
+
+
+
